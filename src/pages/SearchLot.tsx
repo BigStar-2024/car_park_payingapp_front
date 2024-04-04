@@ -1,8 +1,9 @@
 import "./index.css";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SearchLot: React.FC = () => {
-  const lotsNameArray = ["FL-101", "fl102", "fl-108"];
+  const lotsNameArray = ["FL-101", "fl102", "fl-109"];
   const [resultLots, setResultLots] = useState([""]);
 
   const onClickSearchlotsNameInput = (
@@ -30,6 +31,11 @@ const SearchLot: React.FC = () => {
         searchResultElement.style.cssText = "visibility: hidden !important";
       }
     }
+  };
+
+  const navigate = useNavigate();
+  const handleClickGoToOtherPage = (item: string) => {
+    navigate(`/Payment/${item}`);
   };
 
   return (
@@ -61,7 +67,13 @@ const SearchLot: React.FC = () => {
         <div className="content-search-result flex flex-col self-center">
           {resultLots.length > 0 &&
             resultLots.map((item) => (
-              <button className="search-result text-3xl my-2">{item}</button>
+              <button
+                key={item}
+                className="search-result text-3xl my-2"
+                onClick={() => handleClickGoToOtherPage(item)}
+              >
+                {item}
+              </button>
             ))}
         </div>
       </div>
