@@ -3,7 +3,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
-export default function SelectLabels() {
+export default function CountrySelectLabels() {
   const [age, setAge] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -13,7 +13,7 @@ export default function SelectLabels() {
   return (
 
     <div>
-      <FormControl sx={{ minWidth: 120 }}>
+      <FormControl sx={{ minWidth: 120, width: 1}}>
         <Select
           sx={{
             height: "50px",
@@ -21,7 +21,6 @@ export default function SelectLabels() {
             boxShadow: "3px 2px 2px rgba(250, 85, 29, 0.3)",
             background: "#FFF2EE",
             borderRadius: "10px",
-            width: "400px", // Note: You might need to adjust or remove this to fit the component within its container
           }}
           value={age}
           onChange={handleChange}
@@ -29,10 +28,10 @@ export default function SelectLabels() {
           inputProps={{ "aria-label": "Without label" }}
         >
           <MenuItem value="" sx={{ fontSize: '24px', color: '#FA551D' }}>
-            <em>None</em>
+            None
           </MenuItem>
-          <MenuItem value={10} sx={{ fontSize: '16px', color: '#FA551D' }}>3Hr-$10 - Fixed Duration: 3.0 hours at $10.00</MenuItem>
-          <MenuItem value={20} sx={{ fontSize: '16px', color: '#FA551D' }}>5Hr-$15 - Fixed Duration: 5.0 hours at $15.00</MenuItem>
+          <MenuItem value={10} sx={{ fontSize: '16px', color: '#FA551D' }}>UniteState</MenuItem>
+          <MenuItem value={20} sx={{ fontSize: '16px', color: '#FA551D' }}>India</MenuItem>
         </Select>
       </FormControl>
     </div>

@@ -1,3 +1,5 @@
+/* --------------------------Parking----------------- */
+
 form.license-plate input[type=text] {
     padding: 10px 30px;
     font-size: 20px;
@@ -27,4 +29,42 @@ form.license-plate input[type=text] {
 .risk-img {
     width: 36px;
     height: auto;
+}
+
+
+
+/* ---------------------Paying------------------------ */
+
+form.email input[type=text] {
+    padding: 10px 30px;
+    font-size: 20px;
+    height: 50px;
+    float: left;
+    width: 100%;
+    color: #FA551D;
+    background: #FFF2EE;
+    border-radius: 10px;
+    box-shadow: 3px 2px 2px rgba(250, 85, 29, 0.3);
+    border: #FA551D solid 1px;
+}
+
+form.card input[type=text] {
+    padding: 10px 30px;
+    font-size: 20px;
+    height: 50px;
+    float: left;
+    width: 100%;
+    color: #FA551D;
+    background: #FFF2EE;
+    border-radius: 10px;
+    box-shadow: 3px 2px 2px rgba(250, 85, 29, 0.3);
+    border: #FA551D solid 1px;
+}
+
+.css-1pxqgcs-MuiButtonBase-root-MuiMenuItem-root.Mui-selected{
+    width: 100%;
+}
+
+.css-1j0ljs0-MuiButtonBase-root-MuiMenuItem-root{
+    width: 100%;
 }

@@ -1,9 +1,10 @@
 import React from "react";
 import "./index.css";
-import Rates from "./Rates";
+import SelectLabels from "./Rates";
 import risk from "./assets/Risk.gif";
 import ColorCheckboxes from "./Checkbox";
 import { useState, useEffect } from "react";
+import Button from "@mui/material/Button";
 
 const Parking = () => {
   const [currentTime, setCurrentTime] = useState<string>("");
@@ -38,13 +39,13 @@ const Parking = () => {
           ></input>
         </form>
       </div>
-      <div className="flex flex-row justify-between my-2">
+      <div className="flex flex-row justify-between my-4">
         <div className="text-[#091C62] p-1 text-2xl">Rates</div>
         <div className="">
-          <Rates />
+          <SelectLabels />
         </div>
       </div>
-      <div className="flex flex-col mt-2 risk-area self-center items-center w-full">
+      <div className="flex flex-col mt-3 risk-area self-center items-center w-full">
         <div className="flex flex-row ">
           <div className="mr-5">
             <img src={risk} alt="Risk" className="risk-img"></img>
@@ -53,7 +54,7 @@ const Parking = () => {
             Disclaimer ― Park at Your Own Risk
           </p>
         </div>
-        <div className="text-[20px] text-[#091C62] mt-2">
+        <div className="text-[20px] text-[#091C62] mt-4">
           {" "}
           This facility and or its agents are not responsible for any loss or
           damage which might be sustained by any vehicles while on this
@@ -61,7 +62,7 @@ const Parking = () => {
           risk.{" "}
         </div>
       </div>
-      <div className="flex mt-2 items-center">
+      <div className="flex mt-4 items-center">
         <div className="">
           <ColorCheckboxes />
         </div>
@@ -71,7 +72,7 @@ const Parking = () => {
       </div>
       <div className="flex flex-row w-full justify-around">
         <div className=" ">
-          <p className="text-[#091C62] text-left font-bold mx-2 my-2">
+          <p className="text-[#091C62] text-left font-bold mx-2 my-3">
             Parking Time
           </p>
           <div className="flex bg-[#F5F5F5] w-72 h-10 justify-center items-center border">
@@ -79,7 +80,7 @@ const Parking = () => {
           </div>
         </div>
         <div className=" ">
-          <p className="text-[#091C62] text-left font-bold mx-2 my-2">
+          <p className="text-[#091C62] text-left font-bold mx-2 my-3">
             Parking Price
           </p>
           <div className="flex bg-[#F5F5F5] w-72 h-10 justify-center items-center border">
@@ -87,18 +88,33 @@ const Parking = () => {
           </div>
         </div>
       </div>
-      <div className="mt-3 text-white w-full">
-        <button className="btn bg-[#FA551D] w-full p-2.5 rounded-[10px]">Pay Now</button>
+      <div className="mt-8 text-white w-full">
+        <Button
+          variant="contained"
+          sx={{
+            backgroundColor: "#FA551D",
+            "&:hover": {
+              backgroundColor: "#FA551D", // Optional: Changes the background color on hover to a darker red
+            },
+            color: "white",
+            fontSize: "20px",
+            borderRadius: "10px",
+            width: "100%",
+          }}
+          // className="btn w-full p-2.5 rounded-[20px]"
+        >
+          Pay Now
+        </Button>
       </div>
       <div className="parking-footer flex flex-col self-center ">
-        <div className="footer-copyright text-1xl mt-8">
+        <div className="text-1xl mt-12">
           © 2024 CityParkLot. All rights reserved.
         </div>
         <div className="footer-link flex self-center">
-          <a href="/" className="footer-link-text text-1xl mx-2 underline my-1">
+          <a href="/" className="text-1xl text-[#091C62] mx-2 underline my-1">
             Terms of Service
           </a>
-          <a href="/" className="footer-link-text text-1xl mx-2 underline my-1">
+          <a href="/" className="text-1xl text-[#091C62] mx-2 underline my-1">
             Privacy Policy
           </a>
         </div>
