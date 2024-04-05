@@ -157,3 +157,16 @@ form.search button i {
 
 /* ======================Payment====================== */
 
+/* ---------------tab view--------------------- */
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+    width: 50%;
+    font-size: 24px;
+}
+
+
+.MuiButtonBase-root {
+    width: 50%;
+    font-size: 24px !important; 
+}
+
