@@ -7,7 +7,7 @@ const Paying = () => {
 
   return (
     <div className="payment w-full flex h-screen">
-       sdfsdf
+       sdfsdf adsfasdfasdf
     </div>
   );
 };
