@@ -38,8 +38,8 @@ const Paying = () => {
   };
 
   return (
-    <div className="payment w-full flex flex-col h-screen">
-      <div className="flex flex-col mt-3 bg-[#FFF2EE] rounded-[10px] p-5 items-center w-full h-fit">
+    <div className="payment w-full flex flex-col">
+      <div className="flex flex-col mt-3 bg-[#FFF2EE] rounded-[10px] p-5 items-center w-full">
         <p className="text-2xl font-bold text-[#091C62]">
           Pay Vanguard Parking Solutions Inc.
         </p>
@@ -69,11 +69,11 @@ const Paying = () => {
         <div className="text-[#091C62] p-1 text-left text-2xl">
           Payment Method
         </div>
-        <div className="flex justify-between">
+        <div className="flex md:flex-row sm:flex-col sm:items-center justify-between">
           <div className="flex"><button className="search-result text-3xl my-2" onClick={openModal1}><img src="" className="mr-2 w-10"></img>Card</button></div> 
           <button className="search-result text-3xl my-2" onClick={openModal2}>Cash App Pay</button>
         </div>
-        <div className="mt-4 flex justify-center ">
+        <div className="mt-0 flex justify-center ">
           <button className="search-result text-3xl my-2 flex justify-center items-center" onClick={openModal3}>
             <img src={Apple} className="mr-2 w-10"></img>
             Apple Pay
@@ -81,7 +81,7 @@ const Paying = () => {
         </div>
       </div>
       <div className="flex flex-col self-center ">
-        <div className="text-1xl mt-8">
+        <div className="text-1xl mt-10">
           © 2024 CityParkLot. All rights reserved.
         </div>
         <div className="footer-link flex self-center">

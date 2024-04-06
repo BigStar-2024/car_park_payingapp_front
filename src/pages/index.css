@@ -16,7 +16,7 @@
 
 .content-title {
     color: #FA551D;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 
@@ -80,11 +80,11 @@ form.search button i {
     box-shadow: 3px 5px 5px rgba(250, 85, 29, 0.3);
     border: #FA551D 1px solid;
     padding: 15px;
-    border-radius: 10px;  
+    border-radius: 10px;
 }
 
 .search-result:hover {
-    background-color:#FA551D;
+    background-color: #FA551D;
     color: white;
     transition-duration: 0.5s;
 }
@@ -137,11 +137,11 @@ form.search button i {
     .footer-link {
         flex-direction: column;
     }
-    
+
     .footer-link-text {
         margin: 10px 0 0;
     }
-    
+
 }
 
 
@@ -159,6 +159,8 @@ form.search button i {
 
 /* ---------------tab view--------------------- */
 
+
+
 .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
     width: 50%;
     font-size: 24px;
@@ -167,6 +169,34 @@ form.search button i {
 
 .MuiButtonBase-root {
     width: 50%;
-    font-size: 24px !important; 
+    font-size: 24px !important;
+}
+
+.carpark-logo2 { 
+    top: 30px;
+    left: 50px;
+    width: 100px;
+    height: auto;
+}
+
+
+
+@media (max-width: 870px) {
+    .content-title {
+        padding: 0px;
+    }
+}
+
+@media (max-width: 720px) {
+
+    .carpark-logo2 {
+        position: relative;
+        justify-items: center;
+        left: 0px;
+    }
+
+    .content-title {
+        width: 100%;
+    }
 }
 

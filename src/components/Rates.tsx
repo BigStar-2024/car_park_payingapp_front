@@ -3,7 +3,11 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
-export default function SelectLabels() {
+interface Props {
+  setSelectValue: (data: number) => void; 
+}
+
+const SelectLabels: React.FC <Props> = ({setSelectValue}) => {
   const [age, setAge] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -27,13 +31,13 @@ export default function SelectLabels() {
           displayEmpty
           inputProps={{ "aria-label": "Without label" }}
         >
-          <MenuItem value="" sx={{  color: "#FA551D" , width: "100%"}}>
+          <MenuItem value="" sx={{  color: "#FA551D" , width: "100%"}} onClick={() => setSelectValue(0)}>
             Default
           </MenuItem>
-          <MenuItem value={10} sx={{  color: "#FA551D", width: "100%" }}>
-            3Hr-$10 - Fixed Duration: 3.0 hours at $10.00
+          <MenuItem value={3} sx={{  color: "#FA551D", width: "100%" }} onClick={() => setSelectValue(3)}>
+            3Hr-$9 - Fixed Duration: 3.0 hours at $9.00
           </MenuItem>
-          <MenuItem value={20} sx={{  color: "#FA551D", width: "100%" }}>
+          <MenuItem value={5} sx={{  color: "#FA551D", width: "100%" }} onClick={() => setSelectValue(5)}>
             5Hr-$15 - Fixed Duration: 5.0 hours at $15.00
           </MenuItem>
         </Select>
@@ -41,3 +45,5 @@ export default function SelectLabels() {
     </div>
   );
 }
+
+export default SelectLabels;

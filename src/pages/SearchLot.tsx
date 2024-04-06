@@ -11,7 +11,7 @@ const SearchLot: React.FC = () => {
   ) => {
     const searchTerm = event.currentTarget.value.toLowerCase();
     let resultLotsArray: string[] = [""];
-    if (searchTerm == "") {
+    if (searchTerm === "") {
       resultLotsArray = [""];
     } else {
       resultLotsArray = lotsNameArray.filter((lotName) =>
@@ -39,7 +39,7 @@ const SearchLot: React.FC = () => {
   };
 
   return (
-    <div className="search-lot text-center flex flex-col p-10">
+    <div className="search-lot text-center min-w-[480px] flex flex-col py-10">
       <div className="search-lot-header">
         <a href="/">
           <img

@@ -9,7 +9,7 @@ type ModalProps = {
 const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
   return (
-    <div className="fixed top-0 left-0 w-1/2 h-full bg-black bg-opacity-50 flex items-center justify-center">
+    <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
       <div className="bg-white rounded-lg border-solid border-0 border-[#FA551D] relative p-10" style={{ transition: 'transform 3s', transform: 'scale(1)' }}>
         {/* Add your detailed content here */}
         <button

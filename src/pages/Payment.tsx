@@ -17,22 +17,22 @@ const Payment = () => {
   };
 
   return (
-    <div className="payment w-full flex h-screen">
-      <div className="flex w-full">
-        <img className="h-screen w-auto" src={imageUrl} alt="Lot Image"></img>
+    <div className="payment w-full flex  h-screen">
+      <div className="flex w-1/2 max-[1380px]:hidden">
+        <div className="h-full w-full " style={{backgroundImage:`url(${imageUrl})`, backgroundSize:"cover", backgroundRepeat:"no-repeat"}}></div>
       </div>
-      <div className="fixed translate-x-1/2 flex flex-col w-full bg-white h-screen">
+      <div className="content flex flex-col w-1/2 items-center bg-white relative max-[1380px]:w-full">
         <a href="/">
           <img
-            className="carpark-logo"
+            className="carpark-logo2 absolute"
             src="https://i.ibb.co/v4f4RtW/logo.png"
             alt="logo"
           ></img>
         </a>
-        <div className="content-title text-[#FA551D] text-[40px] w-1/2 text-center mt-12 px-10">
+        <div className="content-title text-[#FA551D] text-[40px] w-full text-center mt-12 px-10">
           Parking lots: {item}
         </div>
-        <div className="flex mt-8 w-1/2 px-10 text-center justify-center">
+        <div className="flex mt-8 w-full px-10 text-center justify-center">
           <LabTabs />
         </div>
       </div>

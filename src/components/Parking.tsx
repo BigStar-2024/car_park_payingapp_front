@@ -19,6 +19,7 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
     // Retrieve the input value from localStorage on component mount 
     return localStorage.getItem('licensePlate') || ''; 
   }); 
+  const [selectValue, setSelectValue] = useState<number>(0)
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.trim();
@@ -91,19 +92,23 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
     
     const calculateEndTime = (time: string): string => {
       const current = new Date();
-      const endTime = new Date(current.getTime() + 3 * 60 * 60 * 1000); // Adding 3 hours
+      const endTime = new Date(current.getTime() + selectValue * 60 * 60 * 1000); // Adding 3 hours
       return endTime.toLocaleTimeString();
     };
     
-    setCurrentTime(getCurrentTime());
-    setEndTime(calculateEndTime(currentTime));
-  }, []);
+    if (isChecked) {
+      setCurrentTime(getCurrentTime());
+      setEndTime(calculateEndTime(currentTime));
+    }
+  }, [isChecked, selectValue]);
+
+  
 
   return (
-    <div className="payment w-full flex flex-col h-screen">
-      <div className="flex flex-row justify-between">
+    <div className="w-full flex flex-col h-auto">
+      <div className="parking-license flex flex-row md:flex-row sm:flex-col sm:items-center justify-between">
         <div className="text-[#091C62] p-1 text-2xl">License Plate *</div>
-        <form className="license-plate ml-20" action="/action_page.php">
+        <form className="license-plate" action="/action_page.php">
           <input
             type="text"
             className="input-placeholder"
@@ -115,10 +120,10 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
           ></input>
         </form>
       </div>
-      <div className="flex flex-row justify-between my-4">
+      <div className="parking-rate flex flex-row md:flex-row sm:flex-col sm:items-center justify-between my-4">
         <div className="text-[#091C62] p-1 text-2xl">Rates</div>
         <div className="">
-          <SelectLabels />
+          <SelectLabels setSelectValue = {setSelectValue}/>
         </div>
       </div>
       <div className="flex flex-col mt-3 risk-area self-center items-center w-full">
@@ -146,12 +151,12 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
           I accept the Terms of Service*
         </p>
       </div>
-      <div className="flex flex-row w-full justify-around">
+      <div className="parking-time flex flex-row md:flex-row sm:flex-col sm:items-center  w-full justify-around">
         <div className=" ">
           <p className="text-[#091C62] text-left font-bold mx-2 my-3">
             Parking Time
           </p>
-          <div className="flex bg-[#F5F5F5] w-72 h-10 justify-center items-center border">
+          <div className="flex bg-[#F5F5F5] w-72 h-10  justify-center items-center border">
             <p className="text-[#FA551D]  mx-5">{`${currentTime} - ${endTime}`}</p>
           </div>
         </div>
@@ -160,7 +165,7 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
             Parking Price
           </p>
           <div className="flex bg-[#F5F5F5] w-72 h-10 justify-center items-center border">
-            <p className="text-[#FA551D] font-[400] mx-5">$15</p>
+            <p className="text-[#FA551D] font-[400] mx-5">${selectValue*3}</p>
           </div>
         </div>
       </div>

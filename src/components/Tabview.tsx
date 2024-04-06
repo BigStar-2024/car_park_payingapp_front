@@ -12,7 +12,7 @@ import { BackdropProps } from "@mui/material";
 
 const  LabTabs : React.FC = () => {
   const [value, setValue] = React.useState("parking");
-  const [payingValue, setPayingValue] = React.useState("parking"); 
+  const [payingValue, setPayingValue] = React.useState(""); 
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -24,7 +24,7 @@ const  LabTabs : React.FC = () => {
 
   const displayPayingTab = (data: boolean) => {
 
-    if (!data) setPayingValue("parking");
+    if (!data) setPayingValue("");
     else setPayingValue("paying");
   }
  
