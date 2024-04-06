@@ -9,82 +9,95 @@ import Button from "@mui/material/Button";
 
 interface ChildProps {
   sendDataToParent: (data: string) => void;
-  displayPayingTab: (data: boolean) => void;
+  displayPayingTab: (data: boolean) => void; 
 }
-const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab}) => {
+const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) => {
   const [currentTime, setCurrentTime] = useState<string>("");
   const [endTime, setEndTime] = useState<string>("");
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
   const [licensePlate, setLicensePlate] = useState<string>(() => { 
     // Retrieve the input value from localStorage on component mount 
     return localStorage.getItem('licensePlate') || ''; 
   }); 
 
-  
-  // const history = useHistory(); // Get the history object from react-router-dom
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value.trim();
+    // Check if the input field is not empty
+    if (value === '') {
+      setLicensePlate(' ');
+      displayPayingTab(false);
+    } else {
+      setLicensePlate(value);
+      if (isChecked) {
+        displayPayingTab(true);
+      } else {
+        displayPayingTab(false);
+      }
+    }
+    };
+    
+    useEffect(() => {
+      if (isChecked && licensePlate.trim() !== '') {
+        displayPayingTab(true);
+      } else {
+        displayPayingTab(false);
+      }
+    }, [isChecked, licensePlate]);
 
+    useEffect(() => {
+      return () => {
+        localStorage.setItem('licensePlate', licensePlate);
+      };
+    }, [licensePlate]);
+    
+    const handleCheckboxChange = (data: boolean) => {
+      setIsChecked(data);
+    };
 
-  const sendDataToParentOnClick = () => {
-    const data = "paying";
-    sendDataToParent(data);
+    useEffect(() => {
+      const savedIsChecked = localStorage.getItem('isChecked');
+      if (savedIsChecked) {
+        setIsChecked(JSON.parse(savedIsChecked));
+      }
+    }, []);
+    
+    const sendDataToParentOnClick = () => {
+      if (licensePlate.trim() !== '' && isChecked) {
+        const data = "paying";
+        sendDataToParent(data);
+      }
+    };
+
+    const handleUnload = () => {
+    localStorage.removeItem('licensePlate');
+    localStorage.removeItem('isChecked')
   };
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', handleUnload);
+    window.addEventListener('unload', handleUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleUnload);
+      window.removeEventListener('unload', handleUnload);
+    };
+  }, []);
+  
   useEffect(() => {
     const getCurrentTime = (): string => {
       const now = new Date();
       return now.toLocaleTimeString();
     };
-
+    
     const calculateEndTime = (time: string): string => {
       const current = new Date();
       const endTime = new Date(current.getTime() + 3 * 60 * 60 * 1000); // Adding 3 hours
       return endTime.toLocaleTimeString();
     };
-
+    
     setCurrentTime(getCurrentTime());
     setEndTime(calculateEndTime(currentTime));
   }, []);
-
-  const handleCheckboxChange = (isChecked: boolean) => {
-    setIsChecked(isChecked);
-  };
-
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value.trim();
-    // setLicensePlate(value);
-    // Check if the input field is not empty
-
-    if (value === '') {
-      // Allow entering space key when licensePlate is empty
-      setLicensePlate(' ');
-      // setIsChecked(false); // Disable the Pay Now button
-      displayPayingTab(false); // Deactivate the Paying tab
-    } else {
-    if (value !== '') {
-      setLicensePlate(value);
-      // setIsChecked(true); // Enable the Pay Now button 
-      displayPayingTab(true); // Activate the Paying tab
-    } else {
-      setLicensePlate(''); // Clear the license plate value
-      // setIsChecked(false); // Disable the Pay Now button
-      displayPayingTab(false); // Deactivate the Paying tab
-    }}
-  };
-
-  // const handleUnload = () => {
-  //   localStorage.removeItem('licensePlate');
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener('beforeunload', handleUnload);
-  //   window.addEventListener('unload', handleUnload);
-
-  //   return () => {
-  //     window.removeEventListener('beforeunload', handleUnload);
-  //     window.removeEventListener('unload', handleUnload);
-  //   };
-  // }, []);
-  
 
   return (
     <div className="payment w-full flex flex-col h-screen">

@@ -11,8 +11,17 @@ const ColorCheckboxes: React.FC<ColorCheckboxesProps> = ({ onCheckboxChange }) =
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
-    onCheckboxChange(isChecked);
+    // localStorage.setItem('isChecked', JSON.stringify(isChecked)); // Store checkbox state in localStorage
+    onCheckboxChange(isChecked); // Send checkbox state using onCheckboxChange
   };
+
+  // React.useEffect(() => {
+  //   const savedIsChecked = localStorage.getItem('isChecked');
+  //   if (savedIsChecked) {
+  //     const isChecked = JSON.parse(savedIsChecked);
+  //     onCheckboxChange(isChecked); // Send stored checkbox state using onCheckboxChange
+  //   }
+  // }, []);
 
   return (
     <div>

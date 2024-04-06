@@ -8,11 +8,11 @@ import Parking from "./Parking";
 import Paying from "./Paying";
 import ParkingIcon from "./assets/ParkingIcon.png"; // Update the path to where your SVG is located
 import PaymentIcon from "./assets/PaymentIcon.png"; // Update the path to where your SVG is located
+import { BackdropProps } from "@mui/material";
 
 const  LabTabs : React.FC = () => {
   const [value, setValue] = React.useState("parking");
-  const [payingValue, setPayingValue] = React.useState("parking");
-
+  const [payingValue, setPayingValue] = React.useState("parking"); 
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -23,9 +23,11 @@ const  LabTabs : React.FC = () => {
   }
 
   const displayPayingTab = (data: boolean) => {
-    if (data != true) setPayingValue("parking");
+
+    if (!data) setPayingValue("parking");
     else setPayingValue("paying");
   }
+ 
   return (
     <Box sx={{ width: "720px", typography: "body1" }}>
       <TabContext value={value}>
