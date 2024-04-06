@@ -35,7 +35,7 @@ const SearchLot: React.FC = () => {
 
   const navigate = useNavigate();
   const handleClickGoToOtherPage = (item: string) => {
-    navigate(`/Payment/${item}`);
+    navigate(`/Payment/${item}/parkingTab`);
   };
 
   return (

@@ -11,7 +11,6 @@ export default function SelectLabels() {
   };
 
   return (
-
     <div>
       <FormControl sx={{ minWidth: 120 }}>
         <Select
@@ -28,11 +27,15 @@ export default function SelectLabels() {
           displayEmpty
           inputProps={{ "aria-label": "Without label" }}
         >
-          <MenuItem value="" sx={{ fontSize: '24px', color: '#FA551D' }}>
-            <em>None</em>
+          <MenuItem value="" sx={{  color: "#FA551D" , width: "100%"}}>
+            Default
           </MenuItem>
-          <MenuItem value={10} sx={{ fontSize: '16px', color: '#FA551D' }}>3Hr-$10 - Fixed Duration: 3.0 hours at $10.00</MenuItem>
-          <MenuItem value={20} sx={{ fontSize: '16px', color: '#FA551D' }}>5Hr-$15 - Fixed Duration: 5.0 hours at $15.00</MenuItem>
+          <MenuItem value={10} sx={{  color: "#FA551D", width: "100%" }}>
+            3Hr-$10 - Fixed Duration: 3.0 hours at $10.00
+          </MenuItem>
+          <MenuItem value={20} sx={{  color: "#FA551D", width: "100%" }}>
+            5Hr-$15 - Fixed Duration: 5.0 hours at $15.00
+          </MenuItem>
         </Select>
       </FormControl>
     </div>

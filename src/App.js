@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Switch } from 'react-router-dom';
 import SearchLot from './pages/SearchLot';
-import Payment from './pages/Payment';
+import Payment from './pages/Payment'; 
+import LabTabs from './components/Tabview';
 
 function App() {
 
@@ -10,7 +11,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SearchLot />} exact />
-          <Route path="/Payment/:item" element={<Payment />} />
+          <Route path="/Payment/:item/parkingTab" element={<Payment />} /> 
+          {/* <Route path="/Payment/:item/parkingTab" element={<LabTabs />} />  */}
         </Routes>
       </BrowserRouter>
     </div>

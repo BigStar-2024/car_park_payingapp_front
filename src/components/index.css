@@ -68,3 +68,7 @@ form.card input[type=text] {
 .css-1j0ljs0-MuiButtonBase-root-MuiMenuItem-root{
     width: 100%;
 }
+
+.MuiButtonBase-root {
+    font-size: 16px !important;
+}

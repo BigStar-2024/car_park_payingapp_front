@@ -9,13 +9,23 @@ import Paying from "./Paying";
 import ParkingIcon from "./assets/ParkingIcon.png"; // Update the path to where your SVG is located
 import PaymentIcon from "./assets/PaymentIcon.png"; // Update the path to where your SVG is located
 
-export default function LabTabs() {
-  const [value, setValue] = React.useState("1");
+const  LabTabs : React.FC = () => {
+  const [value, setValue] = React.useState("parking");
+  const [payingValue, setPayingValue] = React.useState("parking");
+
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
+  const changeStateValue = (data: string) => {
+    setValue(data);
+  }
+
+  const displayPayingTab = (data: boolean) => {
+    if (data != true) setPayingValue("parking");
+    else setPayingValue("paying");
+  }
   return (
     <Box sx={{ width: "720px", typography: "body1" }}>
       <TabContext value={value}>
@@ -55,12 +65,14 @@ export default function LabTabs() {
           </TabList>
         </Box>
         <TabPanel value="parking">
-          <Parking />
+          <Parking sendDataToParent={changeStateValue} displayPayingTab={displayPayingTab}/>
         </TabPanel>
-        <TabPanel value="paying">
+        <TabPanel value={payingValue}>
           <Paying />
         </TabPanel>
       </TabContext>
     </Box>
   );
 }
+
+export default LabTabs;

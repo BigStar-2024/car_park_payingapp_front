@@ -5,11 +5,29 @@ import risk from "./assets/Risk.gif";
 import ColorCheckboxes from "./Checkbox";
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
+// import { useHistory } from 'react-router-dom';
 
-const Parking = () => {
+interface ChildProps {
+  sendDataToParent: (data: string) => void;
+  displayPayingTab: (data: boolean) => void;
+}
+const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab}) => {
   const [currentTime, setCurrentTime] = useState<string>("");
   const [endTime, setEndTime] = useState<string>("");
+  const [isChecked, setIsChecked] = useState(false);
+  const [licensePlate, setLicensePlate] = useState<string>(() => { 
+    // Retrieve the input value from localStorage on component mount 
+    return localStorage.getItem('licensePlate') || ''; 
+  }); 
 
+  
+  // const history = useHistory(); // Get the history object from react-router-dom
+
+
+  const sendDataToParentOnClick = () => {
+    const data = "paying";
+    sendDataToParent(data);
+  };
   useEffect(() => {
     const getCurrentTime = (): string => {
       const now = new Date();
@@ -26,16 +44,61 @@ const Parking = () => {
     setEndTime(calculateEndTime(currentTime));
   }, []);
 
+  const handleCheckboxChange = (isChecked: boolean) => {
+    setIsChecked(isChecked);
+  };
+
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value.trim();
+    // setLicensePlate(value);
+    // Check if the input field is not empty
+
+    if (value === '') {
+      // Allow entering space key when licensePlate is empty
+      setLicensePlate(' ');
+      // setIsChecked(false); // Disable the Pay Now button
+      displayPayingTab(false); // Deactivate the Paying tab
+    } else {
+    if (value !== '') {
+      setLicensePlate(value);
+      // setIsChecked(true); // Enable the Pay Now button 
+      displayPayingTab(true); // Activate the Paying tab
+    } else {
+      setLicensePlate(''); // Clear the license plate value
+      // setIsChecked(false); // Disable the Pay Now button
+      displayPayingTab(false); // Deactivate the Paying tab
+    }}
+  };
+
+  // const handleUnload = () => {
+  //   localStorage.removeItem('licensePlate');
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener('beforeunload', handleUnload);
+  //   window.addEventListener('unload', handleUnload);
+
+  //   return () => {
+  //     window.removeEventListener('beforeunload', handleUnload);
+  //     window.removeEventListener('unload', handleUnload);
+  //   };
+  // }, []);
+  
+
   return (
     <div className="payment w-full flex flex-col h-screen">
       <div className="flex flex-row justify-between">
-        <div className="text-[#091C62] p-1 text-2xl">License Plate</div>
+        <div className="text-[#091C62] p-1 text-2xl">License Plate *</div>
         <form className="license-plate ml-20" action="/action_page.php">
           <input
             type="text"
             className="input-placeholder"
             placeholder="License Plate"
             name="search"
+            required  
+            value={licensePlate}
+            onChange={handleInputChange}
           ></input>
         </form>
       </div>
@@ -64,7 +127,7 @@ const Parking = () => {
       </div>
       <div className="flex mt-4 items-center">
         <div className="">
-          <ColorCheckboxes />
+          <ColorCheckboxes onCheckboxChange={handleCheckboxChange}/>
         </div>
         <p className="text-[#091C62] font-bold mx-5">
           I accept the Terms of Service*
@@ -101,7 +164,8 @@ const Parking = () => {
             borderRadius: "10px",
             width: "100%",
           }}
-          // className="btn w-full p-2.5 rounded-[20px]"
+          onClick={isChecked ? sendDataToParentOnClick : undefined}
+          disabled={!isChecked}
         >
           Pay Now
         </Button>

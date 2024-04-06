@@ -6,6 +6,7 @@ import CardModal from "./Modal/Card";
 import CashModal from "./Modal/Cash";
 import AppleModal from "./Modal/Apple";
 import Apple from './assets/Apple.svg'
+// import CreditCard from "./assets/PaymentCard.svg"
 
 const Paying = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -69,12 +70,12 @@ const Paying = () => {
           Payment Method
         </div>
         <div className="flex justify-between">
-          <button className="search-result text-3xl my-2" onClick={openModal1}>Card</button>
+          <div className="flex"><button className="search-result text-3xl my-2" onClick={openModal1}><img src="" className="mr-2 w-10"></img>Card</button></div> 
           <button className="search-result text-3xl my-2" onClick={openModal2}>Cash App Pay</button>
         </div>
         <div className="mt-4 flex justify-center ">
           <button className="search-result text-3xl my-2 flex justify-center items-center" onClick={openModal3}>
-            <img src={Apple} className="mr-2"></img>
+            <img src={Apple} className="mr-2 w-10"></img>
             Apple Pay
           </button>
         </div>

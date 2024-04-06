@@ -3,16 +3,13 @@ import closeBtn from "../assets/CloseBtn.svg";
 import Button from "@mui/material/Button";
 import Lottie from "react-lottie";
 import QRCode from "../assets/QRcode.json";
-import QRModal from "./QRCode";
-import { useState } from "react";
-
 
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
-const CashModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const QRModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -22,20 +19,11 @@ const CashModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     },
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   if (!isOpen) return null;
   return (
-    <div className="fixed top-0 left-0 w-1/2 h-full bg-black bg-opacity-50 flex items-center justify-center">
+    <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
       <div
-        className="bg-white rounded-lg border-solid border-0 border-[#FA551D] relative p-10 m-10"
+        className="bg-white rounded-lg border-solid border-0 border-[#FA551D] relative p-10"
         style={{ transition: "transform 3s", transform: "scale(1)" }}
       >
         {/* Add your detailed content here */}
@@ -48,13 +36,8 @@ const CashModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         <p className="text-[#FA551D] text-[28px] font-bold text-center">
           Cash App Pay
         </p>
-        <div className="flex flex-row mt-3 bg-[#FFF2EE] rounded-[10px] px-10 items-center w-full h-fit">
-          <Lottie options={defaultOptions} height={100} width={100} />
-          <p className="text-2xl font-bold m-10 text-[#091C62]">
-            After submitting your order, scan the QR code using Cash App Pay.
-          </p>
-        </div>
-        <div className="mt-8 text-white w-full" onClick={openModal}>
+        <Lottie options={defaultOptions} height={300} width={300} />
+        <div className="text-white w-full">
           <Button
             variant="contained"
             sx={{
@@ -66,10 +49,14 @@ const CashModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
               fontSize: "24px",
               borderRadius: "10px",
             }}
-            // className="btn w-full p-2.5 rounded-[20px]"
           >
             Reveal QR code
           </Button>
+        </div>
+        <div className="flex flex-col mt-10 bg-[#FFF2EE] rounded-[10px] px-10 items-center w-full h-fit">
+          <p className="text-[18px] font-bold m-5 text-[#091C62]">
+            Use Cash App or your phone's camera to scan and pay.
+          </p>
         </div>
         <div className="parking-footer flex flex-col self-center ">
           <div className="text-1xl mt-12">
@@ -84,10 +71,9 @@ const CashModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             </a>
           </div>
         </div>
-        <QRModal isOpen={isModalOpen} onClose={closeModal} />
       </div>
     </div>
   );
 };
 
-export default CashModal;
+export default QRModal;
