@@ -1,5 +1,6 @@
 import React from "react";
 import closeBtn from "../assets/CloseBtn.svg";
+import "./Card.css"
 // import Button from "@mui/material/Button";
 // import Lottie from "react-lottie";
 // import QRCode from "../assets/QRcode.json";
@@ -39,8 +40,11 @@ const QRModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         </p>
         {/* <Lottie options={defaultOptions} height={300} width={300} /> */}
         <div className="text-white flex flex-col mt-8 w-full justify-center items-center">
-          <div className="w-[300px]">
+          <div className="w-[300px] relative">
             <img src="https://api.cash.app/qr/f/GRANTLY_MANAGED_GRANT%3Frequest_id=GRR_vkc83zpehpg06detyt0rrcr4-9njgs6&method=qr&type=cap?rounded=0&format=png?border=0" alt=""></img>
+            <div className="">
+              <div className="absolute w-[300px] h-[2px] opacity-60 bg-[#FA551D] line"></div>
+            </div>
           </div>
           {/* <Button
             variant="contained"

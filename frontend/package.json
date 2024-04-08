@@ -13,6 +13,8 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/react": "^18.2.74",
+    "@types/react-dom": "^18.2.24",
     "express": "^4.17.1",
     "fix": "^0.0.3",
     "react": "^18.2.0",
@@ -23,7 +25,7 @@
     "web-vitals": "^2.1.4"
   },
   "homepage": "http://localhost:3000/",
-  "proxy": "http://localhost:4242", 
+  "proxy": "http://localhost:4242",
   "scripts": {
     "start-client": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
