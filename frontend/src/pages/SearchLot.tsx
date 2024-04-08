@@ -82,10 +82,10 @@ const SearchLot: React.FC = () => {
           © 2024 CityParkLot. All rights reserved.
         </div>
         <div className="footer-link flex">
-          <a href="/" className="footer-link-text text-2xl underline m-5">
+          <a href="https://stripe.com/legal/end-users" className="footer-link-text text-2xl underline m-5">
             Terms of Service
           </a>
-          <a href="/" className="footer-link-text text-2xl underline m-5">
+          <a href="https://stripe.com/privacy" className="footer-link-text text-2xl underline m-5">
             Privacy Policy
           </a>
         </div>

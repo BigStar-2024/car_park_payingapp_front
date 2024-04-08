@@ -73,13 +73,13 @@ const CashModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         </div>
         <div className="parking-footer flex flex-col self-center ">
           <div className="text-1xl mt-12">
-            Powered by <strong>Stripe</strong>
+            Powered by <a href="https://stripe.com/"><strong>Stripe</strong></a>
           </div>
           <div className="footer-link flex self-center">
-            <a href="/" className="text-1xl text-[#091C62] mx-2 underline my-1">
+            <a href="https://stripe.com/legal/end-users" className="text-1xl text-[#091C62] mx-2 underline my-1">
               Terms
             </a>
-            <a href="/" className="text-1xl text-[#091C62] mx-2 underline my-1">
+            <a href="https://stripe.com/privacy" className="text-1xl text-[#091C62] mx-2 underline my-1">
               Privacy
             </a>
           </div>

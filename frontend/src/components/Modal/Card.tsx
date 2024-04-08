@@ -73,13 +73,26 @@ const CardModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
           <img className="close-btn" src={closeBtn} alt="close"></img>
         </button>
         <p className="text-[#FA551D] text-[28px] font-bold text-center my-4">
-          Cash App Pay
+          Card Pay
         </p>
         {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
             <CheckoutForm />
           </Elements>
         )}
+        <div className="parking-footer flex flex-col self-center ">
+          <div className="text-1xl mt-6">
+            Powered by <a href="https://stripe.com/"><strong>Stripe</strong></a>
+          </div>
+          <div className="footer-link flex self-center">
+            <a href="https://stripe.com/legal/end-users" className="text-1xl text-[#091C62] mx-2 underline my-1">
+              Terms
+            </a>
+            <a href="https://stripe.com/privacy" className="text-1xl text-[#091C62] mx-2 underline my-1">
+              Privacy
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );

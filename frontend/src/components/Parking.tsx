@@ -193,10 +193,10 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
           © 2024 CityParkLot. All rights reserved.
         </div>
         <div className="footer-link flex self-center">
-          <a href="/" className="text-1xl text-[#091C62] mx-2 underline my-1">
+          <a href="https://stripe.com/legal/end-users" className="text-1xl text-[#091C62] mx-2 underline my-1">
             Terms of Service
           </a>
-          <a href="/" className="text-1xl text-[#091C62] mx-2 underline my-1">
+          <a href="https://stripe.com/privacy" className="text-1xl text-[#091C62] mx-2 underline my-1">
             Privacy Policy
           </a>
         </div>
