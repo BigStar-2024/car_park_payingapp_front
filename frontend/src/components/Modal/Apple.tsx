@@ -17,7 +17,7 @@ const AppleModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
           onClick={onClose}
           className="absolute right-[30px] top-[30px] w-[36px]"
         >
-          <img className="close-btn" src={closeBtn}></img>
+          <img className="close-btn" src={closeBtn} alt="close"></img>
         </button>
         <p className="text-[#FA551D] text-[28px] font-bold text-center">Cash</p>
         

@@ -8,7 +8,6 @@ import Parking from "./Parking";
 import Paying from "./Paying";
 import ParkingIcon from "./assets/ParkingIcon.png"; // Update the path to where your SVG is located
 import PaymentIcon from "./assets/PaymentIcon.png"; // Update the path to where your SVG is located
-import { BackdropProps } from "@mui/material";
 
 const  LabTabs : React.FC = () => {
   const [value, setValue] = React.useState("parking");

@@ -43,7 +43,7 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
       } else {
         displayPayingTab(false);
       }
-    }, [isChecked, licensePlate]);
+    }, [isChecked, licensePlate, displayPayingTab]);
 
     useEffect(() => {
       return () => {
@@ -100,7 +100,7 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
       setCurrentTime(getCurrentTime());
       setEndTime(calculateEndTime(currentTime));
     }
-  }, [isChecked, selectValue]);
+  }, [isChecked, selectValue, currentTime]);
 
   
 
