@@ -24,7 +24,8 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
     // Retrieve the input value from localStorage on component mount 
     return localStorage.getItem('licensePlate') || ''; 
   }); 
-  const [selectValue, setSelectValue] = useState<number>(0)
+  const [selectValue, setSelectValue] = useState<number>(0);
+  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.trim();
@@ -63,8 +64,14 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
     }, [licensePlate, dispatch]);
     
     const handleCheckboxChange = (data: boolean) => {
-      setIsChecked(data);
+      // setIsChecked(data);
+      setIsCheckboxChecked(data);
     };
+
+    useEffect(() => {
+      // Update the acceptance of terms based on the checkbox state
+      setIsChecked(isCheckboxChecked);
+    }, [isCheckboxChecked]);
 
     useEffect(() => {
       const savedIsChecked = localStorage.getItem('isChecked');
@@ -160,11 +167,11 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
           risk.{" "}
         </div>
       </div>
-      <div className="flex mt-4 items-center">
+      <div className="flex mt-4 items-center" onClick={() => setIsCheckboxChecked(!isCheckboxChecked)}>
         <div className="">
-          <ColorCheckboxes onCheckboxChange={handleCheckboxChange}/>
+          <ColorCheckboxes onCheckboxChange={handleCheckboxChange} isChecked={isCheckboxChecked}/>
         </div>
-        <button className="text-[#091C62] font-bold mx-5">
+        <button className="text-[#091C62] font-bold mx-5" >
           I accept the Terms of Service*
         </button>
       </div>
@@ -199,8 +206,8 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
             borderRadius: "10px",
             width: "100%",
           }}
-          onClick={isChecked ? sendDataToParentOnClick : undefined}
-          disabled={!isChecked}
+          onClick={(isChecked || isCheckboxChecked) ? sendDataToParentOnClick : undefined}
+          disabled={!isChecked || !isCheckboxChecked}
         >
           Pay Now
         </Button>

@@ -5,9 +5,10 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 interface ColorCheckboxesProps {
   onCheckboxChange: (isChecked: boolean) => void;
+  isChecked: boolean;
 }
 
-const ColorCheckboxes: React.FC<ColorCheckboxesProps> = ({ onCheckboxChange }) => {
+const ColorCheckboxes: React.FC<ColorCheckboxesProps> = ({ isChecked, onCheckboxChange }) => {
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
@@ -33,6 +34,7 @@ const ColorCheckboxes: React.FC<ColorCheckboxesProps> = ({ onCheckboxChange }) =
             color: "#FA551D", // Color for the checked state
           },
         }}
+        checked={isChecked}
         onChange={handleCheckboxChange}
       />
     </div>
