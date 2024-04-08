@@ -12,14 +12,14 @@ type ModalProps = {
 };
 
 const QRModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    // animationData: QRCode,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
+  // const defaultOptions = {
+  //   loop: true,
+  //   autoplay: true,
+  //   // animationData: QRCode,
+  //   rendererSettings: {
+  //     preserveAspectRatio: "xMidYMid slice",
+  //   },
+  // };
 
   if (!isOpen) return null;
   return (
