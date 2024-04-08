@@ -5,15 +5,20 @@ import risk from "./assets/Risk.gif";
 import ColorCheckboxes from "./Checkbox";
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-// import { useHistory } from 'react-router-dom';
+import { RootState } from '../redux/store';
+import { useAppDispatch, useAppSelector } from '../redux/hooks'
+import { currentTime, endTime, licensePlateNumber } from "../redux/slice/payReducer";
 
 interface ChildProps {
   sendDataToParent: (data: string) => void;
   displayPayingTab: (data: boolean) => void; 
 }
 const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) => {
-  const [currentTime, setCurrentTime] = useState<string>("");
-  const [endTime, setEndTime] = useState<string>("");
+  const dispatch = useAppDispatch()
+  const hourlyRate = useAppSelector((state: RootState) => state.pay.hourlyRate)
+
+  const [currentTime_1, setCurrentTime] = useState<string>("");
+  const [endTime_1, setEndTime] = useState<string>("");
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [licensePlate, setLicensePlate] = useState<string>(() => { 
     // Retrieve the input value from localStorage on component mount 
@@ -27,6 +32,7 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
     if (value === '') {
       setLicensePlate(' ');
       displayPayingTab(false);
+      // dispatch(licensePlateNumber(String(setLicensePlate)));
     } else {
       setLicensePlate(value);
       if (isChecked) {
@@ -34,8 +40,12 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
       } else {
         displayPayingTab(false);
       }
+      console.log(licensePlate);
+      
+      // dispatch(licensePlateNumber(String(setLicensePlate(value))));
     }
     };
+
     
     useEffect(() => {
       if (isChecked && licensePlate.trim() !== '') {
@@ -48,8 +58,9 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
     useEffect(() => {
       return () => {
         localStorage.setItem('licensePlate', licensePlate);
+        dispatch(licensePlateNumber(String(licensePlate))); 
       };
-    }, [licensePlate]);
+    }, [licensePlate, dispatch]);
     
     const handleCheckboxChange = (data: boolean) => {
       setIsChecked(data);
@@ -94,13 +105,19 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
       const current = new Date();
       const endTime = new Date(current.getTime() + selectValue * 60 * 60 * 1000); // Adding 3 hours
       return endTime.toLocaleTimeString();
+      
     };
     
     if (isChecked) {
       setCurrentTime(getCurrentTime());
-      setEndTime(calculateEndTime(currentTime));
+      setEndTime(calculateEndTime(currentTime_1));
+      dispatch(currentTime(getCurrentTime()));
+      dispatch(endTime(calculateEndTime(currentTime_1)));
     }
-  }, [isChecked, selectValue, currentTime]);
+    
+  }, [isChecked, selectValue, currentTime_1, dispatch]);
+
+  const price = selectValue*hourlyRate
 
   
 
@@ -147,9 +164,9 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
         <div className="">
           <ColorCheckboxes onCheckboxChange={handleCheckboxChange}/>
         </div>
-        <p className="text-[#091C62] font-bold mx-5">
+        <button className="text-[#091C62] font-bold mx-5">
           I accept the Terms of Service*
-        </p>
+        </button>
       </div>
       <div className="parking-time flex flex-row md:flex-row sm:flex-col sm:items-center  w-full justify-around">
         <div className=" ">
@@ -157,7 +174,7 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
             Parking Time
           </p>
           <div className="flex bg-[#F5F5F5] w-72 h-10  justify-center items-center border">
-            <p className="text-[#FA551D]  mx-5">{`${currentTime} - ${endTime}`}</p>
+            <p className="text-[#FA551D]  mx-5">{`${currentTime_1} - ${endTime_1}`}</p>
           </div>
         </div>
         <div className=" ">
@@ -165,7 +182,7 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
             Parking Price
           </p>
           <div className="flex bg-[#F5F5F5] w-72 h-10 justify-center items-center border">
-            <p className="text-[#FA551D] font-[400] mx-5">${selectValue*3}</p>
+            <p className="text-[#FA551D] font-[400] mx-5">${price}</p>
           </div>
         </div>
       </div>

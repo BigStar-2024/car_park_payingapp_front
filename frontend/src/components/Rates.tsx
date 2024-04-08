@@ -2,16 +2,26 @@ import * as React from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { useAppDispatch, useAppSelector } from '../redux/hooks'
+import { payAmount, setHourlyRate} from "../redux/slice/payReducer";
 
 interface Props {
   setSelectValue: (data: number) => void; 
 }
 
 const SelectLabels: React.FC <Props> = ({setSelectValue}) => {
-  const [age, setAge] = React.useState("");
+  const dispatch = useAppDispatch()
+  const hourlyRate = useAppSelector(state => state.pay.hourlyRate);
+  const [amount, setAmount] = React.useState("");
+
+  React.useEffect(() => {
+    // Dispatch the setHourlyRate action when the component mounts
+    dispatch(setHourlyRate(3)); // Set the hourly rate to 3
+  }, [dispatch]);
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value);
+    setAmount(event.target.value);
+    dispatch(payAmount(Number(event.target.value)*hourlyRate))
   };
 
   return (
@@ -26,7 +36,7 @@ const SelectLabels: React.FC <Props> = ({setSelectValue}) => {
             borderRadius: "10px",
             width: "400px", // Note: You might need to adjust or remove this to fit the component within its container
           }}
-          value={age}
+          value={amount}
           onChange={handleChange}
           displayEmpty
           inputProps={{ "aria-label": "Without label" }}

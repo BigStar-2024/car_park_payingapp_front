@@ -51,7 +51,7 @@ const CashModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         <div className="flex flex-row mt-3 bg-[#FFF2EE] rounded-[10px] px-10 items-center w-full h-fit">
           <Lottie options={defaultOptions} height={100} width={100} />
           <p className="text-2xl font-bold m-10 text-[#091C62]">
-            After submitting your order, scan the QR code using Cash App Pay.
+            After submitting your order, <br></br>scan the QR code using Cash App Pay.
           </p>
         </div>
         <div className="mt-8 text-white w-full" onClick={openModal}>

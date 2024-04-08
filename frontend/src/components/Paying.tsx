@@ -6,13 +6,17 @@ import CardModal from "./Modal/Card";
 import CashModal from "./Modal/Cash";
 import AppleModal from "./Modal/Apple";
 import Apple from './assets/Apple.svg'
+import { useAppSelector } from '../redux/hooks'
+
 // import CreditCard from "./assets/PaymentCard.svg"
 
-const Paying = () => {
+const Paying: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [isModalOpen3, setIsModalOpen3] = useState(false);
+  const payAmount = useAppSelector((state) => state.pay.value)
+
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -36,6 +40,11 @@ const Paying = () => {
     setIsModalOpen2(false);
     setIsModalOpen3(false);
   };
+  const plateformFee = 0.5;
+  const subTotal = payAmount + plateformFee;
+  const salesTax = payAmount * 0.065;
+  const totalDue = subTotal + salesTax;
+  const fomattedTotalDue = totalDue.toFixed(2);
 
   return (
     <div className="payment w-full flex flex-col">
@@ -43,7 +52,7 @@ const Paying = () => {
         <p className="text-2xl font-bold text-[#091C62]">
           Pay Vanguard Parking Solutions Inc.
         </p>
-        <div className="text-[36px] text-[#091C62] mt-4">$16.48</div>
+        <div className="text-[36px] text-[#091C62] mt-4">${fomattedTotalDue}</div>
       </div>
       <div className="mt-6 text-white w-fit self-center">
         <button

@@ -39,4 +39,4 @@ const ColorCheckboxes: React.FC<ColorCheckboxesProps> = ({ onCheckboxChange }) =
   );
 }
 
-export default ColorCheckboxes
+export default ColorCheckboxes;

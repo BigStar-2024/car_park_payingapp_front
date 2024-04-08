@@ -4,7 +4,7 @@
 
 /* ----------------header-------------- */
 
-.carpark-logo {
+.citypark-logo {
     position: fixed;
     top: 30px;
     left: 50px;
@@ -110,7 +110,7 @@ form.search button i {
         width: 360px;
     }
 
-    .carpark-logo {
+    .citypark-logo {
         width: 150px;
         height: auto;
     }
@@ -121,7 +121,7 @@ form.search button i {
         width: 240px;
     }
 
-    .carpark-logo {
+    .citypark-logo {
         left: 50%;
         transform: translate(-50%, 0%);
         width: 150px;
@@ -172,7 +172,7 @@ form.search button i {
     font-size: 24px !important;
 }
 
-.carpark-logo2 { 
+.citypark-logo2 { 
     top: 30px;
     left: 50px;
     width: 100px;
@@ -189,7 +189,7 @@ form.search button i {
 
 @media (max-width: 720px) {
 
-    .carpark-logo2 {
+    .citypark-logo2 {
         position: relative;
         justify-items: center;
         left: 0px;

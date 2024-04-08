@@ -43,7 +43,7 @@ const SearchLot: React.FC = () => {
       <div className="search-lot-header">
         <a href="/">
           <img
-            className="carpark-logo"
+            className="citypark-logo"
             src="https://i.ibb.co/v4f4RtW/logo.png"
             alt="logo"
           ></img>

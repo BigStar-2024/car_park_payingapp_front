@@ -2,15 +2,18 @@ import "./index.css";
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import LabTabs from "../components/Tabview";
+import { useAppDispatch } from "../redux/hooks";
+import { parkName } from "../redux/slice/payReducer";
 
 const Payment = () => {
+  const dispatch = useAppDispatch();
   const [imageUrl, setImageUrl] = useState("");
-
-  const { item } = useParams<any>();
+  const { item } = useParams<string>();
 
   useEffect(() => {
     item && updateImageUrl(item);
-  }, [item]);
+    dispatch(parkName(String(item)));
+  }, [item, dispatch]);
   // Function to update the image URL
   const updateImageUrl = (newUrl: string) => {
     setImageUrl("/" + newUrl + ".jpg");
@@ -19,12 +22,19 @@ const Payment = () => {
   return (
     <div className="payment w-full flex  h-screen">
       <div className="flex w-1/2 max-[1380px]:hidden">
-        <div className="h-full w-full " style={{backgroundImage:`url(${imageUrl})`, backgroundSize:"cover", backgroundRepeat:"no-repeat"}}></div>
+        <div
+          className="h-full w-full "
+          style={{
+            backgroundImage: `url(${imageUrl})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
       </div>
       <div className="content flex flex-col w-1/2 items-center bg-white relative max-[1380px]:w-full">
         <a href="/">
           <img
-            className="carpark-logo2 absolute"
+            className="citypark-logo2 absolute"
             src="https://i.ibb.co/v4f4RtW/logo.png"
             alt="logo"
           ></img>
