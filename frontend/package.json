@@ -23,7 +23,7 @@
     "web-vitals": "^2.1.4"
   },
   "homepage": "http://localhost:3000/",
-  "proxy": "http://localhost:4242",
+  "proxy": "http://localhost:4242", 
   "scripts": {
     "start-client": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
