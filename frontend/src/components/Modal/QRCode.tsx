@@ -1,8 +1,9 @@
 import React from "react";
 import closeBtn from "../assets/CloseBtn.svg";
-import Button from "@mui/material/Button";
-import Lottie from "react-lottie";
-import QRCode from "../assets/QRcode.json";
+// import Button from "@mui/material/Button";
+// import Lottie from "react-lottie";
+// import QRCode from "../assets/QRcode.json";
+// import QRCode from "../assets/QRcode.png";
 
 type ModalProps = {
   isOpen: boolean;
@@ -13,7 +14,7 @@ const QRModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    animationData: QRCode,
+    // animationData: QRCode,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
@@ -36,9 +37,12 @@ const QRModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         <p className="text-[#FA551D] text-[28px] font-bold text-center">
           Cash App Pay
         </p>
-        <Lottie options={defaultOptions} height={300} width={300} />
-        <div className="text-white w-full">
-          <Button
+        {/* <Lottie options={defaultOptions} height={300} width={300} /> */}
+        <div className="text-white flex flex-col mt-8 w-full justify-center items-center">
+          <div className="w-[300px]">
+            <img src="https://api.cash.app/qr/f/GRANTLY_MANAGED_GRANT%3Frequest_id=GRR_vkc83zpehpg06detyt0rrcr4-9njgs6&method=qr&type=cap?rounded=0&format=png?border=0" alt=""></img>
+          </div>
+          {/* <Button
             variant="contained"
             sx={{
               backgroundColor: "#FA551D",
@@ -51,22 +55,22 @@ const QRModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             }}
           >
             Reveal QR code
-          </Button>
+          </Button> */}
         </div>
         <div className="flex flex-col mt-10 bg-[#FFF2EE] rounded-[10px] px-10 items-center w-full h-fit">
           <p className="text-[18px] font-bold m-5 text-[#091C62]">
-            Use Cash App or your phone's camera to scan and pay.
+            Use <a className="text-[##091C62] opacity-90 underline" href="https://cash.app/">Cash App</a> or your phone's camera to scan and pay.
           </p>
         </div>
         <div className="parking-footer flex flex-col self-center ">
           <div className="text-1xl mt-12">
-            Powered by <strong>Stripe</strong>
+            Powered by <a href="https://stripe.com/"><strong>Stripe</strong></a>
           </div>
           <div className="footer-link flex self-center">
-            <a href="/" className="text-1xl text-[#091C62] mx-2 underline my-1">
+            <a href="https://stripe.com/us/legal" className="text-1xl text-[#091C62] mx-2 underline my-1">
               Terms
             </a>
-            <a href="/" className="text-1xl text-[#091C62] mx-2 underline my-1">
+            <a href="https://stripe.com/privacy" className="text-1xl text-[#091C62] mx-2 underline my-1">
               Privacy
             </a>
           </div>
