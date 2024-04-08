@@ -50,7 +50,7 @@ form.payment-form {
 }
 
 
-button {
+button.submit {
   background: #FA551D;
   font-family: Arial, sans-serif;
   color: #ffffff;
