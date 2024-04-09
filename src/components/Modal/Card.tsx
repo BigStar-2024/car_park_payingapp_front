@@ -4,6 +4,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import closeBtn from "../assets/CloseBtn.svg";
 import CheckoutForm from "./CheckoutForm";
+import { useAppSelector } from '../../redux/hooks'
+import { RootState } from '../../redux/store';
 import "./Card.css";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
@@ -18,7 +20,11 @@ const stripePromise = loadStripe(
 );
 
 const CardModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+
   const [clientSecret, setClientSecret] = useState("");
+  const totalPayAmount = useAppSelector((state: RootState) => state.pay.totalPayAmount);
+  console.log(totalPayAmount);
+  
 
   useEffect(() => {
     if (isOpen) {
@@ -26,12 +32,13 @@ const CardModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
       fetch("/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+        body: JSON.stringify({ items: [{ id: "xl-tshirt", amount: totalPayAmount }] }),
       })
         .then((res) => res.json())
         .then((data) => setClientSecret(data.clientSecret));
     }
-  }, [isOpen]); // Add isOpen as a dependency to useEffect if needed
+  }, [isOpen, totalPayAmount]); // Add isOpen as a dependency to useEffect if needed
+
   if (!isOpen) return null;
 
   type AppearanceTheme = "stripe" | "night" | "flat" | "none";

@@ -7,6 +7,7 @@ interface payAmountState {
   endTime: string;
   parkName: string;
   licensePlateNumber: string;
+  totalPayAmount: number;
 }
 
 const initialState: payAmountState = {
@@ -15,7 +16,8 @@ const initialState: payAmountState = {
   currentTime: "0:00:00 AM",
   endTime: "0:00:00 AM",
   parkName: "FL-100",
-  licensePlateNumber: "30DZLG"
+  licensePlateNumber: "30DZLG",
+  totalPayAmount: 1000,
 };
 
 export const payReducer = createSlice({
@@ -40,9 +42,12 @@ export const payReducer = createSlice({
     licensePlateNumber: (state, action: PayloadAction<string>) => {
       state.licensePlateNumber = action.payload;
     },
+    totalPayAmount:(state, action: PayloadAction<number>) => {
+      state.totalPayAmount = action.payload;
+    },
   },
 });
 
-export const { payAmount, setHourlyRate, currentTime, endTime, parkName, licensePlateNumber } = payReducer.actions;
+export const { payAmount, setHourlyRate, currentTime, endTime, parkName, licensePlateNumber, totalPayAmount } = payReducer.actions;
 
 export default payReducer.reducer;

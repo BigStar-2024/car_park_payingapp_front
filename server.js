@@ -7,11 +7,11 @@ const stripe = require("stripe")("sk_test_51P2lpQC9Zd6I2Ms1GvOYwHZUIGfQFbny1XJBE
 app.use(express.static("public"));
 app.use(express.json());
 
-const calculateOrderAmount = (items) => {
+const calculateOrderAmount = (value) => {
   // Replace this constant with a calculation of the order's amount
   // Calculate the order total on the server to prevent
   // people from directly manipulating the amount on the client
-  return 1400;
+  return value;
 };
 
 const chargeCustomer = async (customerId) => {
@@ -40,6 +40,7 @@ const chargeCustomer = async (customerId) => {
 
 app.post("/create-payment-intent", async (req, res) => {
   const { items } = req.body;
+  // console.log(items[0].amount);
   // Alternatively, set up a webhook to listen for the payment_intent.succeeded event
   // and attach the PaymentMethod to a new Customer
   const customer = await stripe.customers.create();
@@ -48,7 +49,7 @@ app.post("/create-payment-intent", async (req, res) => {
   const paymentIntent = await stripe.paymentIntents.create({
     customer: customer.id,
     setup_future_usage: "off_session",
-    amount: calculateOrderAmount(items),
+    amount: calculateOrderAmount(items[0].amount*100),
     currency: "usd",
     // In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
     automatic_payment_methods: {

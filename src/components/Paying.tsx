@@ -6,17 +6,27 @@ import CardModal from "./Modal/Card";
 import CashModal from "./Modal/Cash";
 import AppleModal from "./Modal/Apple";
 import Apple from './assets/Apple.svg'
-import { useAppSelector } from '../redux/hooks'
+import { useAppDispatch, useAppSelector } from '../redux/hooks'
+import { totalPayAmount } from "../redux/slice/payReducer";
+
+
 
 // import CreditCard from "./assets/PaymentCard.svg"
 
 const Paying: React.FC = () => {
+  const dispatch = useAppDispatch()
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [isModalOpen3, setIsModalOpen3] = useState(false);
   const payAmount = useAppSelector((state) => state.pay.value)
-
+  const plateformFee = 0.5;
+  const subTotal = payAmount + plateformFee;
+  const salesTax = payAmount * 0.065;
+  const totalDue = subTotal + salesTax;
+  const fomattedTotalDue = parseFloat(totalDue.toFixed(2));
+  
+  
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -24,6 +34,7 @@ const Paying: React.FC = () => {
 
   const openModal1 = () => {
     setIsModalOpen1(true);
+    dispatch(totalPayAmount(Number(fomattedTotalDue)));
   };
 
   const openModal2 = () => {
@@ -40,11 +51,7 @@ const Paying: React.FC = () => {
     setIsModalOpen2(false);
     setIsModalOpen3(false);
   };
-  const plateformFee = 0.5;
-  const subTotal = payAmount + plateformFee;
-  const salesTax = payAmount * 0.065;
-  const totalDue = subTotal + salesTax;
-  const fomattedTotalDue = totalDue.toFixed(2);
+  
 
   return (
     <div className="payment w-full flex flex-col">
