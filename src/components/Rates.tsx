@@ -10,7 +10,7 @@ interface Props {
 }
 
 const SelectLabels: React.FC <Props> = ({setSelectValue}) => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const hourlyRate = useAppSelector(state => state.pay.hourlyRate);
   const [amount, setAmount] = React.useState("");
 
