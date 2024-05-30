@@ -13,7 +13,8 @@ function App() {
   const [stripePromise, setStripePromise] = useState(null);
 
   useEffect(() => {
-    fetch("/config").then(async (r) => {
+    fetch(`${process.env.BACKEND_URL}/config`).then(async (r) => {
+      console.log("config", r.json());
       const { publishableKey } = await r.json();
       setStripePromise(loadStripe(publishableKey));
     });
