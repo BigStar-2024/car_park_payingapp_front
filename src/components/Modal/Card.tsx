@@ -6,6 +6,7 @@ import closeBtn from "../assets/CloseBtn.svg";
 import CheckoutForm from "./CheckoutForm";
 import { useAppSelector } from '../../redux/hooks'
 import { RootState } from '../../redux/store';
+import axios from "axios";
 import "./Card.css";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
@@ -29,14 +30,16 @@ const CardModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   useEffect(() => {
     if (isOpen) {
       // Create PaymentIntent as soon as the page loads
-      fetch(`${process.env.BACKEND_URL}/create-payment-intent`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: [{ id: "xl-tshirt", amount: totalPayAmount }] }),
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}/create-payment-intent`, {
+        items: [{ id: "xl-tshirt", amount: totalPayAmount }]
+      }, {
+        headers: {
+          "Content-Type": "application/json"
+        }
       })
-        .then((res) => {
-          console.log("Result: ", res);
-          return res.json();
+        .then((response) => {
+          console.log("Result: ", response, process.env.REACT_APP_BACKEND_URL);
+          return response.data;
         })
         .then((data) => setClientSecret(data.clientSecret))
         .catch((error) => {
