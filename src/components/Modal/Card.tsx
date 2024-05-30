@@ -24,18 +24,24 @@ const CardModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const [clientSecret, setClientSecret] = useState("");
   const totalPayAmount = useAppSelector((state: RootState) => state.pay.totalPayAmount);
   console.log(totalPayAmount);
-  
+
 
   useEffect(() => {
     if (isOpen) {
       // Create PaymentIntent as soon as the page loads
-      fetch("/create-payment-intent", {
+      fetch(`${process.env.BACKEND_URL}/create-payment-intent`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ items: [{ id: "xl-tshirt", amount: totalPayAmount }] }),
       })
-        .then((res) => res.json())
-        .then((data) => setClientSecret(data.clientSecret));
+        .then((res) => {
+          console.log("Result: ", res);
+          return res.json();
+        })
+        .then((data) => setClientSecret(data.clientSecret))
+        .catch((error) => {
+          console.error(error);
+        });
     }
   }, [isOpen, totalPayAmount]); // Add isOpen as a dependency to useEffect if needed
 
