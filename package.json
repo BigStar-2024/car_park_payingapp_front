@@ -29,12 +29,10 @@
   "homepage": "http://localhost:3000/",
   "proxy": "http://localhost:4242",
   "scripts": {
-    "start-client": "react-scripts --openssl-legacy-provider start",
-    "build": "concurrently \"npm run build\" \"npm run start-server\"",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "start-server": "node server.js",
-    "start": "concurrently \"yarn start-client\" \"yarn start-server\"" 
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
