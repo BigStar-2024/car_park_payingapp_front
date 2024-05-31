@@ -1,10 +1,31 @@
 import "./index.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+interface Lot {
+  siteCode: string;
+}
 
 const SearchLot: React.FC = () => {
-  const lotsNameArray = ["FL-101", "fl102", "fl-109"];
+  const [lotsNameArray, setLotsNameArray] = useState([""]);
+  const [lostsData, setLotsData] = useState<Lot[]>([]);
   const [resultLots, setResultLots] = useState([""]);
+
+  useEffect(() => {
+    axios
+      .get("https://city-park-lot.run.place/city-park-lot/api/payingapp/lot")
+      .then((res) => {
+        console.log(res);
+        const results = res.data;
+        setLotsData(prevLotsData=> {
+          return results.map((lot : Lot) => ({...prevLotsData, siteCode: lot.siteCode}));
+        })
+    })
+    .catch(error => {
+      console.log("Fetch Error: ", error);
+    })
+  },[])
 
   const onClickSearchlotsNameInput = (
     event: React.KeyboardEvent<HTMLInputElement>
@@ -14,8 +35,10 @@ const SearchLot: React.FC = () => {
     if (searchTerm === "") {
       resultLotsArray = [""];
     } else {
-      resultLotsArray = lotsNameArray.filter((lotName) =>
-        lotName.toLowerCase().includes(searchTerm)
+      resultLotsArray = lostsData
+        .map(lot => lot.siteCode)
+        .filter((lotName) =>
+          lotName.toLowerCase().includes(searchTerm)
       );
     }
     setResultLots(resultLotsArray);
