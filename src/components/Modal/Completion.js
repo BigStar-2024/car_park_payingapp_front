@@ -19,7 +19,7 @@ function Completion(props) {
   const [createDate, setCreateDate] = useState('');
   const [receiptEmail, setReceiptEmail] = useState('');
   const [status, setStatus] = useState('');
-  
+
   useEffect(() => {
     setLicensePlateNumber(localStorage.getItem("licensePlate"));
     setParkName(localStorage.getItem('Lot'))
@@ -39,26 +39,32 @@ function Completion(props) {
         setReceiptEmail(data[0].receipt_email)
         setStatus(data[0].status)
       })
-      .then(() => {
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/save-data`, {
-          status: status,
-          parkName: localStorage.getItem('Lot'),
-          licensePlateNumber: localStorage.getItem("licensePlate"),
-          amount: amount,
-          receiptEmail: receiptEmail,
-          createDate: createDate
-        })
-          .then(response => {
-            console.log('Data sent successfully:', response.data);
-          })
-          .catch(error => {
-            console.error('Error sending data to the backend:', error);
-          });
-      })
       .catch(error => {
         console.log("Error:", error);
       });
   }, [])
+
+  useEffect(() => {
+    console.log("<<<<<<<<<<<<<<>>>>>>>>>>>>>>", status, amount, receiptEmail, createDate);
+    if (status && parkName && licensePlateNumber && amount && receiptEmail && createDate) {
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}/save-data`, {
+        status,
+        parkName,
+        licensePlateNumber,
+        amount,
+        receiptEmail,
+        createDate
+      })
+        .then(response => {
+          console.log('Data sent successfully:', response.data);
+        })
+        .catch(error => {
+          console.error('Error sending data to the backend:', error);
+        });
+    } else {
+      console.log('All fields must be filled');
+    }
+  }, [status, amount, receiptEmail, createDate]);
 
 
 
