@@ -247,7 +247,7 @@ const SearchLot: React.FC = () => {
 
     if (searchTerm !== "") {
       resultLotsArray = allLotsData.filter((lotData : any) =>
-        lotData.siteCode.toLowerCase().includes(searchTerm)
+        lotData.siteCode?.toLowerCase().includes(searchTerm)
       );
     }
     console.log("resultLotsArray : ", resultLotsArray)
