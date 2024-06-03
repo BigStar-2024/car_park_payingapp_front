@@ -2,7 +2,7 @@ import success from "../assets/Success.gif";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import "./Card.css";
-import { useAppSelector } from "../../redux/hooks";
+// import { useAppSelector } from "../../redux/hooks";
 
 
 
