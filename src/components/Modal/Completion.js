@@ -2,14 +2,22 @@ import success from "../assets/Success.gif";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import "./Card.css";
+import { useAppSelector } from "../../redux/hooks"; 
+
+
 
 function Completion(props) {
+  const parkName = useAppSelector(state => state.pay.parkName);
+  const licensePlateNumber = useAppSelector(
+    state => state.pay.licensePlateNumber
+  );
   const [messageBody, setMessageBody] = useState('');
   const { stripePromise } = props;
   const [amount, setAmount] = useState('');
   const [createDate, setCreateDate] = useState('');
   const [receiptEmail, setReceiptEmail] = useState('');
-  const [status, setStatus] = useState('')
+  const [status, setStatus] = useState('');
+  
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/payments_log`)
@@ -64,6 +72,14 @@ function Completion(props) {
           </div>
           <div className="flex flex-col p-2">
             <div className="flex float-left">
+              <p className='text-xl text-[grey] font-bold mt-4'>Lot : </p>
+              <p className='text-xl text-[#091C62] font-bold mt-4 ml-2'> {parkName}</p>
+            </div>
+            <div className="flex float-left">
+              <p className='text-xl text-[grey] font-bold mt-4'>Plate Number : </p>
+              <p className='text-xl text-[#091C62] font-bold mt-4 ml-2'> {licensePlateNumber}</p>
+            </div>
+            <div className="flex float-left">
               <p className='text-xl text-[grey] font-bold mt-4'>Amount : </p>
               <p className='text-xl text-[#091C62] font-bold mt-4 ml-2'> ${amount}</p>
             </div>
@@ -75,6 +91,7 @@ function Completion(props) {
               <p className='text-xl text-[grey] font-bold mt-4'>Payment Date (EDT) : </p>
               <p className='text-xl text-[#091C62] font-bold mt-4 ml-2'> {createDate}</p>
             </div>
+
           </div>
           <div className="flex flex-col justify-center items-center">
             <p className='text-2xl text-[red] font-bold mt-6'>Thanks for your park!</p>
