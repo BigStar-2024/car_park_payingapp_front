@@ -21,7 +21,7 @@ form.payment-form {
   box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
     0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
   border-radius: 7px;
-  border:none;
+  border: none;
   padding: 40px;
 }
 
@@ -132,13 +132,26 @@ button:disabled {
   animation: moveLine 4s linear infinite;
 }
 
+.completion {
+  /* background-image: url("https://i.ibb.co/7bDvPxk/parking-lot.jpg"); */
+  background-image: url("https://cityparkmanagement.com/wp-content/uploads/2024/01/AdobeStock-kjzMV5wbKN.jpg");
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 @keyframes moveLine {
-  0%, 100% {
+
+  0%,
+  100% {
     top: 0;
   }
+
   40% {
     top: 100%;
   }
+
   50% {
     top: 100%;
   }
@@ -149,6 +162,7 @@ button:disabled {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
+
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);

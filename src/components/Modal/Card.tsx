@@ -24,7 +24,6 @@ const CardModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
   const [clientSecret, setClientSecret] = useState("");
   const totalPayAmount = useAppSelector((state: RootState) => state.pay.totalPayAmount);
-  console.log(totalPayAmount);
 
 
   useEffect(() => {
@@ -38,7 +37,6 @@ const CardModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         }
       })
         .then((response) => {
-          console.log("Result: ", response, process.env.REACT_APP_BACKEND_URL);
           return response.data;
         })
         .then((data) => setClientSecret(data.clientSecret))

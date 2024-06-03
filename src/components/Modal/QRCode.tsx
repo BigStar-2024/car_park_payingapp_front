@@ -41,7 +41,7 @@ const QRModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         {/* <Lottie options={defaultOptions} height={300} width={300} /> */}
         <div className="text-white flex flex-col mt-8 w-full justify-center items-center">
           <div className="w-[300px] relative">
-            <img src="https://api.cash.app/qr/f/GRANTLY_MANAGED_GRANT%3Frequest_id=GRR_vkc83zpehpg06detyt0rrcr4-9njgs6&method=qr&type=cap?rounded=0&format=png?border=0" alt=""></img>
+            <img src="https://api.cash.app/qr/f/GRANTLY_MANAGED_GRANT%3Frequest_id=GRR_vkc83zpehpg06detyt0rrcr4-9njgs6&method=qr&type=cap?rounded=0&format=png?border=0" alt="QR Code"></img>
             <div className="">
               <div className="absolute w-[300px] h-[2px] opacity-60 bg-[#FA551D] line"></div>
             </div>

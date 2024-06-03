@@ -3,7 +3,7 @@ import {
   PaymentElement,
   useStripe,
   useElements
-} from "@stripe/react-stripe-js";
+} from "@stripe/react-stripe-js"; 
 
 export default function CheckoutForm() {
   const stripe = useStripe();
