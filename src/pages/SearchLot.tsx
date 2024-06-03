@@ -273,7 +273,9 @@ const SearchLot: React.FC = () => {
     const parkImgId = encodeURIComponent(item.cover.split('-')[1]);
     
     console.log("item:", item, "parkName : ", parkName, "parkImgId : ", parkImgId)
-    navigate(`/Payment/parkingTab/${parkName}/${parkImgId}/`);
+    navigate(`/Payment/parkingTab/`,
+      {state: { parkName: parkName, parkImgId: parkImgId}}
+    );
   };
 
   return (

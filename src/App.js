@@ -33,7 +33,7 @@ function App() {
           <Routes>
             <Route path="/" element={<SearchLot />} exact />
             {/* <Route path="/Payment/:item/parkingTab" element={<Payment />} /> */}
-            <Route path="/Payment/parkingTab/:parkName/:parkImgId" element={<Payment />} />
+            <Route path="/Payment/parkingTab/" element={<Payment />} />
 
             <Route path="/completion" element={<Completion stripePromise={stripePromise} />} />
           </Routes>

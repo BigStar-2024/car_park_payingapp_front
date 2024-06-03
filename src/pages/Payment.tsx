@@ -53,7 +53,8 @@
 // export default Payment;
 
 import "./index.css";
-import { useParams } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
+
 import React, { useState, useEffect } from "react";
 import LabTabs from "../components/Tabview";
 import { useAppDispatch } from "../redux/hooks";
@@ -61,18 +62,18 @@ import { parkName } from "../redux/slice/payReducer";
 
 const Payment = () => {
   const dispatch = useAppDispatch();
-  const params = useParams()
+  // const params = useParams()
   const [imageUrl, setImageUrl] = useState("");
-  const currentparkName = params.parkName;
+  const location = useLocation()
+  const currentparkName = location.state.parkName
+  const currentParkImgId = location.state.parkImgId
 
-
-  const currentParkImgId = params.parkImgId;
 
 
   useEffect(() => {
     if (currentparkName) {
       updateImageUrl(currentParkImgId);
-   
+
       dispatch(parkName(String(currentparkName)));
       localStorage.setItem('Lot', String(currentparkName));
     }
@@ -90,6 +91,7 @@ const Payment = () => {
           style={{
             backgroundImage: `url(${imageUrl})`,
             backgroundSize: "cover",
+            backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
           }}
         ></div>
