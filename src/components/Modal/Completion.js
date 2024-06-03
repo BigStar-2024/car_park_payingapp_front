@@ -2,7 +2,7 @@ import success from "../assets/Success.gif";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import "./Card.css";
-import { useAppSelector } from "../../redux/hooks"; 
+import { useAppSelector } from "../../redux/hooks";
 
 
 
@@ -19,21 +19,17 @@ function Completion(props) {
   const [createDate, setCreateDate] = useState('');
   const [receiptEmail, setReceiptEmail] = useState('');
   const [status, setStatus] = useState('');
-
+  
   useEffect(() => {
     setLicensePlateNumber(localStorage.getItem("licensePlate"));
     setParkName(localStorage.getItem('Lot'))
-  }, []);
-  
-
-  useEffect(() => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/payments_log`)
       .then(res => {
         const data = res.data.data
         console.log(data);
         setAmount(data[0].amount / 100);
 
-        const timestamp = data[0].created*1000;
+        const timestamp = data[0].created * 1000;
         const date = new Date(timestamp); // Convert timestamp to Date object
         // const formattedDate = date.toI(); // Get the date in a readable format
         const options = { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
@@ -43,10 +39,26 @@ function Completion(props) {
         setReceiptEmail(data[0].receipt_email)
         setStatus(data[0].status)
       })
+      .then(() => {
+        axios.post(`${REACT_APP_BACKEND_URL}/save-data`, {
+          status: status,
+          parkName: localStorage.getItem('Lot'),
+          licensePlateNumber: localStorage.getItem("licensePlate"),
+          amount: amount,
+          receiptEmail: receiptEmail,
+          createDate: createDate
+        })
+          .then(response => {
+            console.log('Data sent successfully:', response.data);
+          })
+          .catch(error => {
+            console.error('Error sending data to the backend:', error);
+          });
+      })
       .catch(error => {
         console.log("Error:", error);
       });
-  }, [setAmount, setReceiptEmail, setStatus])
+  }, [])
 
 
 
@@ -63,6 +75,7 @@ function Completion(props) {
       ));
     });
   }, [stripePromise]);
+
 
   return (
     <>
