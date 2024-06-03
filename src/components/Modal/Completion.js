@@ -7,10 +7,11 @@ import { useAppSelector } from "../../redux/hooks";
 
 
 function Completion(props) {
-  const parkName = useAppSelector(state => state.pay.parkName);
+  // const parkName = useAppSelector(state => state.pay.parkName);
   // const licensePlateNumber = useAppSelector(
   //   state => state.pay.licensePlateNumber
   // );
+  const [parkName, setParkName] = useState('')
   const [licensePlateNumber, setLicensePlateNumber] = useState("");
   const [messageBody, setMessageBody] = useState('');
   const { stripePromise } = props;
@@ -21,6 +22,7 @@ function Completion(props) {
 
   useEffect(() => {
     setLicensePlateNumber(localStorage.getItem("licensePlate"));
+    setParkName(localStorage.getItem('Lot'))
   }, []);
   
 

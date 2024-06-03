@@ -63,6 +63,7 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
         dispatch(licensePlateNumber(String(licensePlate))); 
       };
     }, [licensePlate, dispatch]);
+
     
     const handleCheckboxChange = (data: boolean) => {
       // setIsChecked(data);

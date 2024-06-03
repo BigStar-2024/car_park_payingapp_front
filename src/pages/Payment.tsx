@@ -64,13 +64,16 @@ const Payment = () => {
   const params = useParams()
   const [imageUrl, setImageUrl] = useState("");
   const currentparkName = params.parkName;
-  const currentParkImgId = params.parkImgId;
+
   
+  const currentParkImgId = params.parkImgId;
+
 
   useEffect(() => {
     currentparkName && updateImageUrl(currentParkImgId);
-    
+
     dispatch(parkName(String(currentparkName)));
+    localStorage.setItem('Lot', String(currentparkName));
   }, [currentparkName, dispatch, currentParkImgId]);
   // Function to update the image URL
   const updateImageUrl = (newUrl: any) => {
