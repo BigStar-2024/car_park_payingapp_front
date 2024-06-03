@@ -8,15 +8,20 @@ import { useAppSelector } from "../../redux/hooks";
 
 function Completion(props) {
   const parkName = useAppSelector(state => state.pay.parkName);
-  const licensePlateNumber = useAppSelector(
-    state => state.pay.licensePlateNumber
-  );
+  // const licensePlateNumber = useAppSelector(
+  //   state => state.pay.licensePlateNumber
+  // );
+  const [licensePlateNumber, setLicensePlateNumber] = useState("");
   const [messageBody, setMessageBody] = useState('');
   const { stripePromise } = props;
   const [amount, setAmount] = useState('');
   const [createDate, setCreateDate] = useState('');
   const [receiptEmail, setReceiptEmail] = useState('');
   const [status, setStatus] = useState('');
+
+  useEffect(() => {
+    setLicensePlateNumber(localStorage.getItem("licensePlate"));
+  }, []);
   
 
   useEffect(() => {

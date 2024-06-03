@@ -69,6 +69,7 @@ const Payment = () => {
 
   useEffect(() => {
     currentparkName && updateImageUrl(currentParkImgId);
+    
     dispatch(parkName(String(currentparkName)));
   }, [currentparkName, dispatch, currentParkImgId]);
   // Function to update the image URL

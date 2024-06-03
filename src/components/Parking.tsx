@@ -36,6 +36,7 @@ const Parking: React.FC<ChildProps> = ({ sendDataToParent, displayPayingTab }) =
       // dispatch(licensePlateNumber(String(setLicensePlate)));
     } else {
       setLicensePlate(value);
+      
       if (isChecked) {
         displayPayingTab(true);
       } else {
