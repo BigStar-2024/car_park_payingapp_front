@@ -43,7 +43,7 @@ const QRModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
           <div className="w-[300px] relative">
             <img src="https://i.ibb.co/gVD2HQG/qr-code.png"   alt="QR Code"></img>
             <div className="">
-              <div className="absolute w-[320px] h-[4px] opacity-60 bg-[#FA551D] line"></div>
+              <div className="absolute w-[300px] h-[4px] opacity-60 bg-[#FA551D] line"></div>
             </div>
           </div>
           {/* <Button
