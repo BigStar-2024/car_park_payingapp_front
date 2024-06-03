@@ -40,7 +40,7 @@ function Completion(props) {
         setStatus(data[0].status)
       })
       .then(() => {
-        axios.post(`${REACT_APP_BACKEND_URL}/save-data`, {
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/save-data`, {
           status: status,
           parkName: localStorage.getItem('Lot'),
           licensePlateNumber: localStorage.getItem("licensePlate"),
