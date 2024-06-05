@@ -227,8 +227,7 @@ const SearchLot: React.FC = () => {
     axios.get("https://city-park-lot.run.place/city-park-lot/api/payingapp/lot")
          .then(res => {
             const resultArray = res.data;
-            setAllLotsData(resultArray);
-            console.log("successful");
+            setAllLotsData(resultArray); 
             
 
             // Extract siteCode values from resultArray
