@@ -228,6 +228,8 @@ const SearchLot: React.FC = () => {
          .then(res => {
             const resultArray = res.data;
             setAllLotsData(resultArray);
+            console.log("successful");
+            
 
             // Extract siteCode values from resultArray
             // const lotsNameArray = resultArray.map((result: any) => result.siteCode);
